@@ -4,7 +4,7 @@ var nodemailer = require('nodemailer');
 
 var { configMailer, configFrom } = require('./mailer.config');
 
-async function mailerRegis(arrayEmail, subject, nama, linkVerif) {
+async function mailerRegis(arrayEmail, subject, content) {
     var transporter = nodemailer.createTransport(configMailer);
     var mailOptions = {
         from: configFrom,
@@ -22,8 +22,9 @@ async function mailerRegis(arrayEmail, subject, nama, linkVerif) {
             }
         ],
         icalEvent: { //if have calender
-            method: 'PUBLISH',
-            path: '/path/to/file'
+            filename: 'invitation.ics',
+            method: 'request',
+            content: content //string ICAL
         },
         html: `<table></table>`
     };
