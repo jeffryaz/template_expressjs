@@ -25,7 +25,7 @@ function isAuthenticated(req, res, next) {
 }
 
 function getToken(data) {
-    var token = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (300 * 60), data: data.id }, Nilai, { algorithm: 'HS384' });
+    var token = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (300 * 60), data: data }, Nilai, { algorithm: 'HS384' });
     return token;
 }
 
