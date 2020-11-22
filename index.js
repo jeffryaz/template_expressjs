@@ -2,9 +2,11 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
+var fs = require("fs");
 
 var app = express();
-app.use(logger(':remote-user [:date[web]] ":method :url" :status :response-time ms'));
+var logFile = fs.createWriteStream('./log/log-request.log', { flags: 'a' });
+app.use(logger(':remote-addr :remote-user HTTP/:http-version [:date[web]] ":method :url" :status :res[content-length] Byte - :response-time ms', { stream: logFile }));
 app.use(express.json({ limit: '50mb' }));
 app.use(cors());
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
@@ -17,6 +19,6 @@ app.use(require('./controllers/contoh.contoller'));
 
 app.set('port', 3738);
 app.listen(app.get('port'), () => {
-    console.log(`Service NodeJs Express with Postgresql is running on port  ${app.get('port')}`);
+    console.log(`Service NodeJs ExpressJs ORM KnexJs with Postgresql is running on port  ${app.get('port')}`);
 });
 module.exports = app;

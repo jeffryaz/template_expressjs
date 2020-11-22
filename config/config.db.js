@@ -1,23 +1,30 @@
-const { Client } = require('pg');
-
-const client = new Client({
-    user: 'postgres',
-    password: 'admin',
-    host: 'localhost',
-    database: 'angular',
-    port: 5432,
-    statement_timeout: 100,
-    connectionTimeoutMillis: 10000
+var knex = require('knex')({
+    client: 'pg',
+    connection: {
+        host: '127.0.0.1',
+        user: 'postgres',
+        password: 'admin',
+        database: 'angular',
+        port: 5432,
+        statement_timeout: 100,
+        connectionTimeoutMillis: 10000
+    },
+    pool: { min: 0, max: 7 },
+    acquireConnectionTimeout: 10000,
+    log: {
+        warn(message) {
+            console.log("warn: ", message);
+        },
+        error(message) {
+            console.log("error: ", message);
+        },
+        deprecate(message) {
+            console.log("deprecate: ", message);
+        },
+        debug(message) {
+            console.log("debug: ", message);
+        },
+    }
 });
 
-client.
-    connect()
-    .then(() => {
-        console.log("Service PgAdmin RUN, Developer Indonesia : JEFFRY AZHARI ROSMAN");
-    })
-    .catch(err => {
-        console.error('Sevice PgAdmin FAILED: ', err);
-        return;
-    });
-
-module.exports = client;
+module.exports = knex;

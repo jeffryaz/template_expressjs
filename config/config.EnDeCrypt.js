@@ -2,12 +2,13 @@ const Nilai = require('./config.RegexMe')
 
 var CryptoJS = require("crypto-js");
 
-function decryptV1(data) {
+function decryptV1(req, res, next) {
     try {
-        var bytes = CryptoJS.AES.decrypt(data, Nilai.toString());
-        return [JSON.parse(bytes.toString(CryptoJS.enc.Utf8))];
+        var bytes = CryptoJS.AES.decrypt(req.body.encrypt, Nilai.toString());
+        req.body.dataDecoded = [JSON.parse(bytes.toString(CryptoJS.enc.Utf8))];
+        next();
     } catch (error) {
-        return [];
+        return res.status(400).send({ status: 400, message: "Invalid Data" })
     }
 }
 
