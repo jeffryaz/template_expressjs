@@ -6,11 +6,14 @@ var knex = require('knex')({
         password: 'admin',
         database: 'angular',
         port: 5432,
-        statement_timeout: 100,
-        connectionTimeoutMillis: 10000
+        connectionTimeoutMillis: 5000
     },
-    pool: { min: 0, max: 7 },
-    acquireConnectionTimeout: 10000,
+    pool: {
+        min: 0,
+        max: 7,
+        idleTimeoutMillis: 30000,
+        acquireTimeoutMillis: 10000
+    },
     log: {
         warn(message) {
             console.log("warn: ", message);

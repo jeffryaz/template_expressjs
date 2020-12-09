@@ -14,8 +14,15 @@ app.use(cookieParser());
 
 //Path
 // app.use(require('./routes/index'));
-app.use(require('./controllers/contoh.contoller'));
+app.use(require('./routes/contoh'));
 // app.use(require('./controllers/dashboard.controller'));
+
+app.use((error, req, res, next) => {
+    console.error(error);
+    res.status(error.status || 500).send({
+        status: error.status || 500, message: error.message || "Internal Server Error"
+    });
+});
 
 app.set('port', 3738);
 app.listen(app.get('port'), () => {
