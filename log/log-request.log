@@ -7,3 +7,7 @@
 ::1 - HTTP/1.1 [Wed, 09 Dec 2020 09:47:02 GMT] "POST /path" 200 6549 Byte - 135.048 ms
 ::1 - HTTP/1.1 [Wed, 09 Dec 2020 09:57:06 GMT] "POST /path" 200 6549 Byte - 120.405 ms
 ::1 - HTTP/1.1 [Wed, 09 Dec 2020 10:00:14 GMT] "POST /path" 200 6549 Byte - 95.100 ms
+::1 - HTTP/1.1 [Sun, 20 Dec 2020 08:39:53 GMT] "POST /path" 200 38 Byte - 215.631 ms
+::1 - HTTP/1.1 [Sun, 20 Dec 2020 08:40:03 GMT] "POST /get" 200 294 Byte - 55.259 ms
+::1 - HTTP/1.1 [Sun, 20 Dec 2020 08:40:50 GMT] "POST /path" 200 6549 Byte - 859.911 ms
+::1 - HTTP/1.1 [Sun, 20 Dec 2020 08:41:34 GMT] "POST /path" 200 6597 Byte - 107.183 ms
