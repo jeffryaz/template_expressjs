@@ -5,7 +5,7 @@ var CryptoJS = require("crypto-js");
 function decryptV1(req, res, next) {
     try {
         var bytes = CryptoJS.AES.decrypt(req.body.encrypt, Nilai.toString());
-        req.body.dataDecoded = [JSON.parse(bytes.toString(CryptoJS.enc.Utf8))];
+        req.body.dataDecoded = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
         next();
     } catch (error) {
         return res.status(400).send({ status: 400, message: "Invalid Data" })

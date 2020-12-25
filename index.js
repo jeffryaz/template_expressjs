@@ -24,7 +24,7 @@ app.use((error, req, res, next) => {
     });
 });
 
-app.set('port', 3738);
+app.set('port', 3739);
 app.listen(app.get('port'), () => {
     console.log(`Service NodeJs ExpressJs ORM KnexJs with Postgresql is running on port  ${app.get('port')}`);
 });

@@ -20,7 +20,10 @@ class ContohController {
 
     static async contoh_2(req, res, next) {
         try {
-            var data = await knex.select().from('employees')
+            var data = {
+                decrypt: req.body.dataDecoded,
+                resultQuery: await knex.select().from('employees')
+            }
             return res.status(200).send(Response.success("1.0.0", data.length, data));
         } catch (error) {
             next(error)
