@@ -29,5 +29,12 @@ class ContohController {
             next(error)
         }
     }
+    static async contoh_3(req, res, next) {
+        try {
+            return res.status(200).send({ response: "I am alive" });
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 module.exports = ContohController;
