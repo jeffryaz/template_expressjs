@@ -3,8 +3,8 @@ var knex = require('knex')({
     connection: {
         host: '127.0.0.1',
         user: 'postgres',
-        password: 'admin',
-        database: 'angular',
+        password: '@Rosman1998',
+        database: 'example_data',
         port: 5432,
         connectionTimeoutMillis: 5000
     },
