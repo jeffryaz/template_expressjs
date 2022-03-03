@@ -29,6 +29,67 @@ app.use((error, req, res, next) => {
     });
 });
 
+const file = async () => {
+
+    const path = require('path');
+    const fs = require('fs');
+
+    const zipper = require('zip-local');
+    // zipper.sync.zip(path.join(__dirname, 'documents/temps/')).compress().save(path.join(__dirname, 'documents/zip/pack.zip'));
+    const unzip = zipper.sync.unzip(path.join(__dirname, 'documents/zip/pack.zip'));
+    const unzipped = await unzip.memory();
+    var files = unzipped.contents();
+    console.log("unzipped", files);
+    // const removeFile = ['Vendor experience.xlsx', '1.jpg'];
+    // const listfile = files.filter(element => removeFile.findIndex(item => item === element) !== -1);
+    // console.log("listfile", listfile);
+    // listfile.forEach(function (file) {
+    // if (!notExecRegExp.test(file))
+    // unzip.lowLevel().remove('2.jpg');
+    // unzip.lowLevel().remove('1.jpg');
+    // const buffer = fs.readFileSync(path.join(__dirname, 'documents/temps/2.jpg'));
+    // unzip.lowLevel().file('2.jpg', buffer);
+    // // // });
+    // var cleanUnzippedFS = unzip.memory();
+    // console.log("cleanUnzippedFS", cleanUnzippedFS);
+    // zipper.sync.zip(cleanUnzippedFS).compress().save(path.join(__dirname, 'documents/zip/pack.zip'));
+
+}
+
+file()
+// zipper.unzip(path.join(__dirname, 'documents/zip/pack.zip'), function (error, unzipped) {
+
+//     if (error) {
+//         console.log("ERROR: %s", error.message);
+//         return;
+//     }
+
+//     var unzippedFS = unzipped.memory();
+//     console.log("unzipped", unzipped);
+//     var files = unzippedFS.contents();
+//     var notExecRegExp = new RegExp(/^[^.]+$|\.(?!(sh|exe|bat)$)([^.]+$)/);
+
+//     files.forEach(function (file) {
+//         if (!notExecRegExp.test(file))
+//             unzipped.lowLevel().remove(file);
+//     });
+
+//     var cleanUnzippedFS = unzipped.memory();
+
+//     // re-zip the clean ZippedFS
+//     // zipper.zip(cleanUnzippedFS, function(zipped) {
+
+//     //     zipped.save("package.zip", function(error) {
+//     //         if(error) {
+//     //             console.log("ERROR: %s", error.message);
+//     //         }
+//     //         else {
+//     //             console.log("The file is scanned and cleaned of executables");
+//     //         }
+//     //     });
+//     // });
+// });
+
 app.listen(process.env.PORT_EXPRESS, () => {
     console.log(`Service NodeJs ExpressJs ORM KnexJs with Postgresql is running on port  ${process.env.PORT_EXPRESS}`);
 });

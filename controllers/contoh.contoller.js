@@ -2,6 +2,7 @@ const moment = require('moment');
 const knex = require('../config/config.db');
 const { encryptV1, decryptV1 } = require('../config/config.EnDeCrypt');
 const { isAuthenticated, getToken } = require('../config/config.Jwt');
+const CompressZip = require('../helpers/compressZip');
 const Response = require("../helpers/response")
 
 class ContohController {
@@ -31,7 +32,8 @@ class ContohController {
     }
     static async contoh_3(req, res, next) {
         try {
-            return res.status(200).send({ response: "I am alive" });
+            const a = await CompressZip.addContentFileName('../documents/zip/pack.zip', []);
+            return res.status(200).send(a);
         } catch (error) {
             next(error)
         }
