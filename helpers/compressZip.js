@@ -1,3 +1,7 @@
+/**
+ * @author Jeffry Azhari Rosman <jeffryazhari@gmail.com>
+ */
+
 const path = require('path');
 const zipper = require('zip-local');
 

@@ -31,15 +31,15 @@ app.use((error, req, res, next) => {
 
 const file = async () => {
 
-    const path = require('path');
-    const fs = require('fs');
+    // const path = require('path');
+    // const fs = require('fs');
 
-    const zipper = require('zip-local');
+    // const zipper = require('zip-local');
     // zipper.sync.zip(path.join(__dirname, 'documents/temps/')).compress().save(path.join(__dirname, 'documents/zip/pack.zip'));
-    const unzip = zipper.sync.unzip(path.join(__dirname, 'documents/zip/pack.zip'));
-    const unzipped = await unzip.memory();
-    var files = unzipped.contents();
-    console.log("unzipped", files);
+    // const unzip = zipper.sync.unzip(path.join(__dirname, 'documents/zip/pack.zip'));
+    // const unzipped = await unzip.memory();
+    // var files = unzipped.contents();
+    // console.log("unzipped", files);
     // const removeFile = ['Vendor experience.xlsx', '1.jpg'];
     // const listfile = files.filter(element => removeFile.findIndex(item => item === element) !== -1);
     // console.log("listfile", listfile);
