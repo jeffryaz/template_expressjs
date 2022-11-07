@@ -10,7 +10,7 @@ var knex = require('knex')({
     },
     pool: {
         min: 0,
-        max: 7,
+        max: 7, // maksimal koneksi pada database agar tidak menunggu untuk eksekusi query 
         idleTimeoutMillis: 30000,
         acquireTimeoutMillis: 10000
     },
