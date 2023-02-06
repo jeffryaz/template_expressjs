@@ -7,6 +7,8 @@ const fs = require("fs");
 const http = require("http");
 const router = require('./routes/router');
 const socket = require('./routes/socket');
+const stomp = require('./routes/stomp');
+const StompServer = require('stomp-broker-js');
 
 var app = express();
 var logFile = fs.createWriteStream('./log/log-request.log', { flags: 'a' });
@@ -16,11 +18,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
 app.use(cookieParser());
 
-const server = http.createServer(app);
-
-//Path
 router.init(app);
-socket.init(server);
 
 app.use((error, req, res, next) => {
     console.error(error);
@@ -90,9 +88,28 @@ file()
 //     // });
 // });
 
-app.listen(process.env.PORT_EXPRESS, () => {
+const server = http.createServer(app);
+socket.init(server);
+
+const stompServer = new StompServer({
+    server: server,
+    debug: console.log,
+    path: '/ws',
+    protocol: 'sockjs',
+    heartbeat: [10000, 10000]
+});
+
+stomp.init(stompServer)
+
+server.listen(process.env.PORT_EXPRESS, () => {
     console.log(`Service NodeJs ExpressJs ORM KnexJs with Postgresql is running on port  ${process.env.PORT_EXPRESS}`);
 });
-server.listen(process.env.PORT_SOCKET, () => {
-    console.log(`Socket NodeJs ExpressJs ORM KnexJs with Postgresql is running on port  ${process.env.PORT_SOCKET}`);
-});
+
+module.exports = { stompServer };
+
+
+
+// dipakai jika port bisa lebih dari 1. dak tidak perlu stomp-broker
+// server.listen(process.env.PORT_SOCKET, () => {
+//     console.log(`Socket NodeJs ExpressJs ORM KnexJs with Postgresql is running on port  ${process.env.PORT_SOCKET}`);
+// });
